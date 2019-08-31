@@ -26,6 +26,11 @@ namespace CTMS.API.Controllers
 
         public static LoginUserModel LoginUser;
 
+        public AuthController(SysUserDAL sysUserDAL)
+        {
+            this.SysUserDAL = sysUserDAL;
+        }
+
         [AllowAnonymous]
         [HttpPost]
         [Route("appLogin")]
