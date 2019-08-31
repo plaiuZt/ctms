@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CTMS.API</name>
+    </assembly>
+    <members>
+        <member name="M:CTMS.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="P:CTMS.API.Startups.ControllerPack.Order">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CTMS.API.Startups.ControllerPack.Register(Autofac.ContainerBuilder,System.Collections.Generic.List{System.Type})">
+            <summary>
+            
+            </summary>
+            <param name="builder"></param>
+            <param name="listType"></param>
+        </member>
+        <member name="P:CTMS.API.Startups.EntityPack.Order">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
