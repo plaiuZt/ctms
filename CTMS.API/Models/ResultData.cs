@@ -9,6 +9,6 @@ namespace CTMS.API.Models
     {
         public int Code { get; set; }
         public string Msg { get; set; }
-        public T Data { get; set; }
+        public T Result { get; set; }
     }
 }
