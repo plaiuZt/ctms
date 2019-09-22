@@ -35,7 +35,12 @@ namespace CTMS.API.Controllers
         [HttpPost]
         [Route("appLogin")]
         public ActionResult AppLogin(UserLoginModel model)
+        //public ActionResult AppLogin(string username,string password)
         {
+            if(model.UserName == null || model.Password == null)
+            {
+                return Json(new { Code = 301, Msg = "post未获取到参数" });
+            }
             var user = SysUserDAL.GetByOne(q => q.UserName == model.UserName && q.Password == model.Password);
             if (user != null)
             {
@@ -50,13 +55,20 @@ namespace CTMS.API.Controllers
                     OpenId = user.OpenId,
                     QQ = user.QQ,
                     MobilePhone = user.MobilePhone,
-                    UserType = user.UserType
+                    UserType = user.UserType,
+                    RoleIds= new List<int> { 1,2,3,4},
+                    RoleName = "系统管理员",
+                    FirstDepId = "1001",
+                    FirstDepName = "管理中心",
+                    DepName = "财政部",
+                    Name = "李四"
+
                 };
 
                 ResultData<LoginUserModel> rst = new ResultData<LoginUserModel>{
                     Code = 200,
                     Msg = "success",
-                    Data = loginUser
+                    Result = loginUser
                 };
 
                 //更新登录用户Token
@@ -85,9 +97,31 @@ namespace CTMS.API.Controllers
             {
                 Code = 200,
                 Msg = "success",
-                Data = token == LoginUser.Token
+                Result = token == LoginUser.Token
             };
 
+            return Json(rst);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("login")]
+        public ActionResult Login(string username, string password)
+        {
+            LoginUserModel model = new LoginUserModel();
+            model.Id = 1;
+            model.RealName = username;
+            //model. = new List<int>() { 1, 2, 3 };
+            //model.r = "系统管理员";
+            model.Token = "DIOAFJL1231JKFAJFDAJ89023";
+            //model.firstDepId = "1001";
+            //model.firstDepName = "综合管理中心";
+            //model.depName = "总经办";
+
+            ResultData<LoginUserModel> rst = new ResultData<LoginUserModel>();
+            rst.Code = 200;
+            rst.Msg = "success";
+            rst.Result = model;
             return Json(rst);
         }
     }
